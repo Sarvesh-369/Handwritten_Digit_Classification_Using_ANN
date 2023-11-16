@@ -48,7 +48,6 @@ def linear_backward(dout: np.ndarray, cache: Tuple[np.ndarray, np.ndarray, np.nd
     dx, dw, db = None, None, None
     x, w, b = cache
     m = x.shape[1]
-    # TODO: Implement the linear backward pass and store the result in dx, dw, db.
     dx = np.dot(dout, w.T)     # Shape (N, D)
     dw = np.dot(x.T, dout)     # Shape (D, M)
     db = np.sum(dout, axis=0)  # Shape (M,)
@@ -69,8 +68,6 @@ def relu_forward(x: np.ndarray) -> Tuple[np.ndarray, np.ndarray]:
 
     out, cache = np.maximum(0, x), x
 
-    # TODO: Implement the ReLU forward pass and store the result in out.
-
     return out, cache
 
 def relu_backward(dout: np.ndarray, cache: np.ndarray) -> np.ndarray:
@@ -85,8 +82,6 @@ def relu_backward(dout: np.ndarray, cache: np.ndarray) -> np.ndarray:
     """
 
     dx, x = None, cache
-
-    # TODO: Implement the ReLU backward pass and store the result in dx.
     mask = (x > 0)
     # Multiply dout with the mask
     dx = dout * mask
@@ -109,9 +104,6 @@ def cross_entropy_loss(logits: np.ndarray, y: np.ndarray) -> Tuple[float, np.nda
     """
 
     loss, dx = None, None
-
-    # TODO: Implement the cross_entropy_loss forward pass and store the result in loss.
-    # TODO: Implement the cross_entropy_loss backward pass and store the result in dx.
     N = logits.shape[0]
 
     # Apply softmax to logits
@@ -220,7 +212,6 @@ class NeuralNetwork:
 
         grads: Dict[str, np.ndarray] = {}
 
-        # TODO: Implement the backward pass for the whole neural network and store the gradients in grads.
         num_layers = len(self.params) // 2
 
         # Backpropagation for the last layer
@@ -239,8 +230,6 @@ class NeuralNetwork:
         - grads (Dict[str, np.ndarray]): Dictionary of gradients for each layer
         - lr (float): Learning rate
         """
-
-        # TODO: Implement the gradient descent update for each parameter.
         for key in self.params.keys():
             self.params[key] -= lr * grads[key]
         pass
